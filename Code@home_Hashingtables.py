@@ -11,8 +11,6 @@ def create_hash_table(size):
     hash_table=[None]*size
     return hash_table
 
-def hash_function(num, size):
-    return num % size
 
 def insert_into_hash_table(table, num, size):
     global collisions
