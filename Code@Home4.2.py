@@ -31,6 +31,8 @@ def find_num(table,num):
         index+=1
     if table[index]==num:
         print(f"{num} found at posistion {index}")
+
+
 randomnums=generate_random_numbers(100)
 table=create_hashtable(100)
 for num in randomnums:
