@@ -1,19 +1,27 @@
-def is_happy_number(num):
-    seen=set()
-    while num != 1 and num not in seen:
-        seen.add(num)
-        num=sum(int(digit)**2 for digit in str(num))
-    return num==1
+#caesersays-Task1
+def encryptor(text, shift):
+    result=""
+    for char in text:
+        if char.isalpha():
+            offset=ord("a") if char.islower() else ord("A")
+            result+=chr((ord(char)-offset+shift)%26+offset)
+        else:
+            result+=char
+    return result
 
-def find_happy_numbers(n):
-    happy_numbers=[]
-    num=1
-    while len(happy_numbers)<n:
-        if is_happy_number(num):
-            happy_numbers.append(num)
-        num+=1
-    return happy_numbers
+def decryptor(text, shift):
+    result=""
+    for char in text:
+        if char.isalpha():
+            offset=ord("a") if char.islower() else ord("A")
+            result+=chr((ord(char)-offset-shift)%26+offset)
+        else:
+            result+=char
+    return result
 
-happy_count=int(input("How many happy numbers do you want to find: "))
-happy_numbers=find_happy_numbers(happy_count)
-print(f"The first {16} happy numbers are: {happy_numbers}")
+text=input("What would you like to encrypt: ")
+shift=int(input("What would you like to shift by: "))
+encrypted=encryptor(text, shift)
+print(f"Encrypted: {encrypted}")
+decrypted=decryptor(encrypted, shift)
+print(f"Decrypted: {decrypted}")
