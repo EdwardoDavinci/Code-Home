@@ -1,56 +1,50 @@
 # Code@home6_OOP_GUI_Data_Structures
-from guizero import *
-
-pointer = 0
-content = []
+from guizero import App, Box, PushButton, Text
 
 
-def isempty():
-    global pointer
-    return pointer == 0
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def isEmpty(self):
+        return self.items == []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+        else:
+            return None
+
+    def size(self):
+        return len(self.items)
 
 
-def isfull():
-    global pointer
-    maxsize = 5
-    return pointer == maxsize
+
+def push_item():
+    item = input_box.value
+    if item:
+        stack.push(item)
+        input_box.clear()
+
+def pop_item():
+    popped_item = stack.pop()
+    if popped_item is not None:
+        print("Popped item:", popped_item)  # You can replace this with a GUI display
 
 
-def push():
-    global pointer
-    if not isfull():
-        content.append(item.value)
-        stack.value = content
-        item.value = ""
-        pointer += 1
-        pointerlbl.value = str(pointer)
-        error.value = "Pushing"
-    else:
-        error.value = "Full"
+app = App("Stack GUI", width=200, height=200)
+stack = Stack()
 
 
-def pop():
-    global pointer
-    if not isempty():
-        content.pop()
-        stack.value = content
-        pointer -= 1
-        pointerlbl.value = str(pointer)
-        error.value = "Popping"
-    else:
-        error.value = "Empty"
+stack_box = Box(app, layout="grid")
+label = Text(stack_box, text="Stack:")
 
+input_box = Text(stack_box, text="")
+push_button = PushButton(stack_box, command=push_item, text="Push")
 
-app = App(title="Stack", width=200, height=400)
-title = Text(app, text="Stack", size=18)
-stack = Text(app, text="", width=8, bg="lightsteelblue1")
+pop_button = PushButton(stack_box, command=pop_item, text="Pop")
 
-item = TextBox(app, width=3)
-item.focus()
-
-bpush = PushButton(app, text="Push", command=push)
-bpop = PushButton(app, text="Pop", command=pop)
-
-pointerlbl = Text(app, text=str(pointer))
-error = Text(app, text="")
 app.display()

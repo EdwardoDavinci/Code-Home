@@ -1,12 +1,10 @@
 from guizero import App, TextBox, PushButton, Text, info, TitleBox, CheckBox, Box
 from datetime import date, datetime
 import time
-
 today = date.today()
 d1 = today.strftime("%d/%m/%Y")
 print(time.time())
 epoch_time = datetime(2021, 6, 9, 2, 0).timestamp()
-
 print("Today's date:", d1)
 app = App(title="Age Calculator")
 box = Box(app, width="fill", border=False)
