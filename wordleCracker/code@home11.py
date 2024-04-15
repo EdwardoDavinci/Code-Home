@@ -13,7 +13,6 @@ for letter in alphabet:
     letterFrequency[letter] = 0
 
 for word in words:
-    letters = []
     for char in word:
         letterCount[char] += 1
 
